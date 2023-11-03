@@ -7,7 +7,7 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'bdm-web-app';
+  title = 'vote-web-app';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

@@ -1,9 +1,9 @@
-﻿namespace VoteApp.Backend.Core.Data.Entities
-{
-    public class Vote
-    {
-        public int Id { get; set; }
+﻿using VoteApp.Backend.Commons.Entities;
 
+namespace VoteApp.Backend.Core.Data.Entities
+{
+    public class Vote : EntityBase
+    {
         public int CandidateId { get; set; }
 
         public Candidate Candidate { get; set; }

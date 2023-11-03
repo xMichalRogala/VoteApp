@@ -21,10 +21,5 @@ namespace VoteApp.Backend.Core.Data
             modelBuilder.ApplyConfiguration(new VoterConfiguration());
             modelBuilder.ApplyConfiguration(new VoteConfiguration());
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
     }
 }

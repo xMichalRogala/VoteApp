@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VoteApp.Backend.Commons\VoteApp.Backend.Commons.csproj" />
-    <ProjectReference Include="..\VoteApp.Backend.CQRS\VoteApp.Backend.CQRS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\Results\" />
   </ItemGroup>
 
 </Project>

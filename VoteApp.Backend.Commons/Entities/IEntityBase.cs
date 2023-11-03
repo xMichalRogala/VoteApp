@@ -1,7 +1,7 @@
 ﻿namespace VoteApp.Backend.Commons.Entities
 {
-    public interface IEntityBase<TKey>
+    public interface IEntityBase
     {
-        public TKey Id { get; set; }
+        public int Id { get; set; }
     }
 }
