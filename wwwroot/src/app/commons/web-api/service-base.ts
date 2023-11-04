@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { Observable, switchMap, map, catchError, throwError } from 'rxjs';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 @Injectable()
 export abstract class ServiceBase {
   constructor(
@@ -31,7 +34,7 @@ export abstract class ServiceBase {
   protected postData<T>(url: string, data: T, errorMessage: string) {
     return this.configService.buildUrl(url).pipe(
       switchMap((urlAddress: string) =>
-        this.httpClient.post(urlAddress, data).pipe(
+        this.httpClient.post(urlAddress, data, httpOptions).pipe(
           map((res: any) => res),
           catchError((error) => this.handleError(errorMessage, error))
         )

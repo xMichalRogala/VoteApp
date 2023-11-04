@@ -10,10 +10,10 @@ import { MaterialModule } from './material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VotersViewComponent } from './components/voters-view/voters-view.component';
 import { SubmitVoteComponent } from './components/submit-vote/submit-vote.component';
-import { DataTableTestComponent } from './components/data-table-test/data-table-test.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './commons/web-api/config.service';
 import { CorsRequestInterceptor } from './commons/web-api/cors-request.interceptor';
+import { AddEntityDialogComponent } from './components/add-entity-dialog/add-entity-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { CorsRequestInterceptor } from './commons/web-api/cors-request.intercept
     CandidatesViewComponent,
     VotersViewComponent,
     SubmitVoteComponent,
-    DataTableTestComponent,
+    AddEntityDialogComponent,
   ],
   imports: [
     BrowserModule,

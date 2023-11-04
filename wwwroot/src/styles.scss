@@ -62,8 +62,17 @@ body {
 }
 
 .mat-mdc-header-cell,
+.mat-mdc-footer-cell,
 .mat-mdc-cell {
   text-align: center !important;
+}
+
+.mat-mdc-footer-cell-right {
+  text-align: right !important;
+}
+
+.mat-mdc-footer-cell-left {
+  text-align: left !important;
 }
 
 /* Importing Bootstrap SCSS file. */

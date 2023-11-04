@@ -37,7 +37,18 @@ export class CandidatesViewComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  createCandidate(name: string) {
+    this.candidateService.createCandidate(name).subscribe((candidate) => {
+      this.candidates.push(candidate);
+      this.reloadTableData(this.candidates);
+    });
+  }
+
   reloadTableData(data: Candidate[]): void {
     this.dataSource.data = data;
+  }
+
+  getCandidateNames(): string[] {
+    return this.candidates.map((x) => x.name);
   }
 }
