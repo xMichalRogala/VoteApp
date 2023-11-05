@@ -1,16 +1,20 @@
 <div class="container whole-width">
   <div class="row justify-content-md-center">
     <div class="col-sm-4">
-      <app-voters-view></app-voters-view>
+      <app-voters-view [(voters)]="voters"></app-voters-view>
     </div>
     <div class="col-sm-1"></div>
     <div class="col-sm-4">
-      <app-candidates-view></app-candidates-view>
+      <app-candidates-view [(candidates)]="candidates"></app-candidates-view>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <app-submit-vote></app-submit-vote>
+      <app-submit-vote
+        [candidates]="candidates"
+        [voters]="voters"
+        (voteAdded)="voteAdded($event)"
+      ></app-submit-vote>
     </div>
   </div>
 </div>

@@ -2,7 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
+  Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
@@ -17,7 +20,8 @@ import { VoterService } from 'src/app/services/voter.service';
 })
 export class VotersViewComponent implements OnInit, AfterViewInit {
   constructor(private voterService: VoterService) {}
-  voters: Voter[] = [];
+  @Input() voters!: Voter[];
+  @Output() votersChange: EventEmitter<Voter[]> = new EventEmitter<Voter[]>();
   displayedColumns: string[] = ['name', 'hasVoted'];
   dataSource = new MatTableDataSource<Voter>(this.voters);
 
@@ -37,7 +41,19 @@ export class VotersViewComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  createVoter(name: string) {
+    this.voterService.createVoter(name).subscribe((voter) => {
+      this.voters.push(voter);
+      this.reloadTableData(this.voters);
+    });
+  }
+
   reloadTableData(data: Voter[]): void {
     this.dataSource.data = data;
+    this.votersChange.emit(data);
+  }
+
+  getVoterNames(): string[] {
+    return this.voters.map((x) => x.name);
   }
 }

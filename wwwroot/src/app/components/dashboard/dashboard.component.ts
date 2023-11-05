@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MatRadioChange } from '@angular/material/radio';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Candidate } from 'src/app/models/Candidate';
-import { CandidateService } from 'src/app/services/candidate.service';
+import { Vote } from 'src/app/models/Vote';
+import { Voter } from 'src/app/models/Voter';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   constructor() {}
 
-  ngOnInit(): void {}
+  candidates: Candidate[] = [];
+  voters: Voter[] = [];
+
+  voteAdded(vote: Vote) {
+    this.candidates.find((x) => x.id === vote.candidate.id)?.votes.push(vote);
+    this.voters.find((x) => x.id === vote.voter.id)!.hasVoted = true;
+  }
 }

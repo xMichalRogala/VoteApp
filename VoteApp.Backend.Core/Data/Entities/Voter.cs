@@ -1,4 +1,5 @@
-﻿using VoteApp.Backend.Commons.Entities;
+﻿using System.Text.Json.Serialization;
+using VoteApp.Backend.Commons.Entities;
 
 namespace VoteApp.Backend.Core.Data.Entities
 {

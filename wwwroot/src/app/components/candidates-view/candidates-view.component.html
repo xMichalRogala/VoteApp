@@ -9,7 +9,7 @@
 
     <ng-container matColumnDef="votes">
       <th mat-header-cell *matHeaderCellDef>Votes</th>
-      <td mat-cell *matCellDef="let element">{{ element.voteCount }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.votes.length }}</td>
       <td mat-footer-cell class="mat-mdc-footer-cell-right" *matFooterCellDef>
         <app-add-entity-dialog
           headerValue="Wanna add new candidate?"

@@ -1,2 +1,23 @@
 <h1>Vote!</h1>
-<p>submit-vote works!</p>
+<form class="vote-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <mat-form-field>
+    <mat-label>I am</mat-label>
+    <mat-select ngModel name="selectedVoter" required>
+      <mat-option *ngFor="let voter of getVotersWhoDidntVote()" [value]="voter">
+        {{ voter.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>I vote for</mat-label>
+    <mat-select ngModel name="selectedCandidate" required>
+      <mat-option *ngFor="let candidate of candidates" [value]="candidate">
+        {{ candidate.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="!form.valid">
+    Submit
+  </button>
+</form>

@@ -28,7 +28,7 @@ namespace VoteApp.Backend.Controllers
 
         [Route(nameof(AddVoter))]
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<Voter>>> AddVoter([FromBody] AddVoterCommand command,CancellationToken ct)
+        public async Task<ActionResult<Voter>> AddVoter([FromBody] AddVoterCommand command,CancellationToken ct)
         {
             var result = await _mediator.Send(command, ct);
 

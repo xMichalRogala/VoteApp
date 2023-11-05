@@ -4,5 +4,4 @@ export type Voter = {
   id?: number;
   name: string;
   hasVoted: boolean;
-  vote: Vote;
 };

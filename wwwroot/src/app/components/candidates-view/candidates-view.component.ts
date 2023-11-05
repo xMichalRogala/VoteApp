@@ -2,7 +2,10 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
+  Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { Candidate } from 'src/app/models/Candidate';
@@ -17,7 +20,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CandidatesViewComponent implements OnInit, AfterViewInit {
   constructor(private candidateService: CandidateService) {}
-  candidates: Candidate[] = [];
+  @Input() candidates!: Candidate[];
+  @Output() candidatesChange: EventEmitter<Candidate[]> = new EventEmitter<
+    Candidate[]
+  >();
+
   displayedColumns: string[] = ['name', 'votes'];
   dataSource = new MatTableDataSource<Candidate>(this.candidates);
 
@@ -46,6 +53,7 @@ export class CandidatesViewComponent implements OnInit, AfterViewInit {
 
   reloadTableData(data: Candidate[]): void {
     this.dataSource.data = data;
+    this.candidatesChange.emit(data);
   }
 
   getCandidateNames(): string[] {
