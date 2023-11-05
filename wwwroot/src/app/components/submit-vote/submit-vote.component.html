@@ -1,5 +1,10 @@
 <h1>Vote!</h1>
-<form class="vote-form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+<form
+  *ngIf="getVotersWhoDidntVote().length > 0; else other_content"
+  class="vote-form"
+  (ngSubmit)="onSubmit(form)"
+  #form="ngForm"
+>
   <mat-form-field>
     <mat-label>I am</mat-label>
     <mat-select ngModel name="selectedVoter" required>
@@ -21,3 +26,7 @@
     Submit
   </button>
 </form>
+
+<ng-template #other_content
+  >There is no voters to pick, all voters voted!</ng-template
+>
