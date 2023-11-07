@@ -14,8 +14,8 @@
         <app-add-entity-dialog
           headerValue="Wanna add new candidate?"
           labelValue="Candidate name"
-          [existingNames]="getCandidateNames()"
-          (newEntityNameEvent)="createCandidate($event)"
+          [existingNames]="getDataNames()"
+          (newEntityNameEvent)="createData($event)"
         ></app-add-entity-dialog>
       </td>
     </ng-container>

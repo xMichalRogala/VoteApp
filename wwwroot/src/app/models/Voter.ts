@@ -1,7 +1,6 @@
-import { Vote } from './Vote';
+import { IEntityBase } from './IEntityBase';
 
-export type Voter = {
+export type Voter = IEntityBase & {
   id?: number;
-  name: string;
   hasVoted: boolean;
 };

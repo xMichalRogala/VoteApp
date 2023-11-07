@@ -18,8 +18,8 @@
         <app-add-entity-dialog
           headerValue="Wanna add new voter?"
           labelValue="Voter name"
-          [existingNames]="getVoterNames()"
-          (newEntityNameEvent)="createVoter($event)"
+          [existingNames]="getDataNames()"
+          (newEntityNameEvent)="createData($event)"
         ></app-add-entity-dialog>
       </td>
     </ng-container>

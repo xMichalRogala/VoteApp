@@ -10,6 +10,8 @@ import {
 } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { TableComponentBase } from 'src/app/commons/components/table-component-base';
 import { Voter } from 'src/app/models/Voter';
 import { VoterService } from 'src/app/services/voter.service';
 
@@ -18,42 +20,16 @@ import { VoterService } from 'src/app/services/voter.service';
   templateUrl: './voters-view.component.html',
   styleUrls: ['./voters-view.component.scss'],
 })
-export class VotersViewComponent implements OnInit, AfterViewInit {
-  constructor(private voterService: VoterService) {}
-  @Input() voters!: Voter[];
-  @Output() votersChange: EventEmitter<Voter[]> = new EventEmitter<Voter[]>();
+export class VotersViewComponent extends TableComponentBase<Voter> {
+  constructor(private voterService: VoterService) {
+    super();
+  }
   displayedColumns: string[] = ['name', 'hasVoted'];
-  dataSource = new MatTableDataSource<Voter>(this.voters);
 
-  @ViewChild(MatPaginator) paginator = new MatPaginator(
-    new MatPaginatorIntl(),
-    ChangeDetectorRef.prototype
-  );
-
-  ngOnInit(): void {
-    this.voterService.getVoters().subscribe((voters) => {
-      this.voters = voters;
-      this.reloadTableData(this.voters);
-    });
+  protected override getData(): Observable<Voter[]> {
+    return this.voterService.getVoters();
   }
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
-  createVoter(name: string) {
-    this.voterService.createVoter(name).subscribe((voter) => {
-      this.voters.push(voter);
-      this.reloadTableData(this.voters);
-    });
-  }
-
-  reloadTableData(data: Voter[]): void {
-    this.dataSource.data = data;
-    this.votersChange.emit(data);
-  }
-
-  getVoterNames(): string[] {
-    return this.voters.map((x) => x.name);
+  protected override createEntity(name: string): Observable<Voter> {
+    return this.voterService.createVoter(name);
   }
 }

@@ -1,7 +1,7 @@
+import { IEntityBase } from './IEntityBase';
 import { Vote } from './Vote';
 
-export type Candidate = {
+export type Candidate = IEntityBase & {
   id?: number;
-  name: string;
   votes: Vote[];
 };
