@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogOverviewExampleDialog } from './standalone/popup-dialog';
+import { PopUpDialog } from './standalone/popup-dialog';
 
 export interface DialogData {
   name: string;
@@ -22,7 +22,7 @@ export class AddEntityDialogComponent {
   @Output() newEntityNameEvent = new EventEmitter<string>();
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(PopUpDialog, {
       data: {
         name: this.name,
         headerValue: this.headerValue,
@@ -35,6 +35,10 @@ export class AddEntityDialogComponent {
 
       if (this.name.length !== 0 && !this.existingNames.includes(this.name)) {
         this.newEntityNameEvent.emit(this.name);
+      } else if (this.name.length === 0) {
+        alert('Cannot add empty name.');
+      } else {
+        alert('Name exists already!');
       }
     });
   }

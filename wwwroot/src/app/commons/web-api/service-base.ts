@@ -45,6 +45,7 @@ export abstract class ServiceBase {
 
   protected handleError(message: string, error: any) {
     console.log(message);
+    alert(message);
     return throwError(() => error);
   }
 }

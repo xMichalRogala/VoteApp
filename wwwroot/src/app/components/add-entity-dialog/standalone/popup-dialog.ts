@@ -24,9 +24,9 @@ import { CommonModule } from '@angular/common';
     CommonModule,
   ],
 })
-export class DialogOverviewExampleDialog {
+export class PopUpDialog {
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<PopUpDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
